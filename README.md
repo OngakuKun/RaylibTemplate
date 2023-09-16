@@ -6,7 +6,7 @@ Prerequisites
 
 Download the Raylib and install as you like. Remember to change the Paths inside the ``.vscode``-Folder.
 
-***NOTE: Build currently only supported on Windows Linux(Only Tested using WSL on Windows)***
+***NOTE: Build currently only supported on Windows & Linux (Only Tested using WSL on Windows)***
 
 Windows
 ---
