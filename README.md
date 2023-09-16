@@ -1,6 +1,5 @@
 # RaylibTemplate
-A simple and easy-to-use template for Raylib Raygui
-
+A simple and easy-to-use template for Raylib
 Prerequisites
 ---
 **Template based on [Raysan5's](https://github.com/raysan5) C99 Library [raylib 4.5](https://github.com/raysan5/raylib/releases/tag/4.5.0)**
