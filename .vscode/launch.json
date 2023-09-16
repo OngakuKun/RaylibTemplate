@@ -25,9 +25,6 @@
             "windows": {
               "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe",
             },
-            "osx": {
-              "MIMode": "lldb"
-            },
             "linux": {
               "miDebuggerPath": "/usr/bin/gdb",
             },
@@ -48,10 +45,8 @@
               "program": "${workspaceFolder}/bin/app.exe",
               "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe"
             },
-            "osx": {
-              "MIMode": "lldb"
-            },
             "linux": {
+              "program": "${workspaceFolder}/bin/app",
               "miDebuggerPath": "/usr/bin/gdb"
             },
             "preLaunchTask": "build release",

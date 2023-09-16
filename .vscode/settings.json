@@ -7,6 +7,6 @@
 		"**/.DS_Store": true
 	},
 	"files.associations": {
-	},
-	"C_Cpp.default.compilerPath": "C:\\raylib\\w64devkit\\bin\\gcc.exe"
+		"defines.h": "c"
+	}
 }

@@ -8,13 +8,20 @@
 			"type": "process",
 			"command": "make",
 			"args": [
-				"PLATFORM=PLATFORM_DESKTOP",
+				
 				"BUILD_MODE=DEBUG"
 			],
 			"windows": {
 				"command": "make.exe",
 				"args": [
 					"RAYLIB_PATH=C:/raylib/raylib",
+					"BUILD_MODE=DEBUG"
+				]
+			},
+			"linux" : {
+				"command": "make",
+				"args": [
+					"RAYLIB_PATH=/usr/local/bin",
 					"BUILD_MODE=DEBUG"
 				]
 			},
@@ -37,6 +44,13 @@
 				"command": "make.exe",
 				"args": [
 					"RAYLIB_PATH=C:/raylib/raylib",
+					"BUILD_MODE=RELEASE"
+				]
+			},
+			"linux" : {
+				"command": "make",
+				"args": [
+					"RAYLIB_PATH=/usr/local/bin",
 					"BUILD_MODE=RELEASE"
 				]
 			},
