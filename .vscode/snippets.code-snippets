@@ -1,0 +1,14 @@
+{
+	"Include Guard": {
+		"prefix": "header",
+		"body": [
+			"#ifndef ${1:header_name}",
+			"#define ${1:header_name}",
+			"",
+			"$0",
+			"",
+			"#endif // ${1:header_name}"
+		],
+		"description": "Create an include guard for a new C Header."
+	}
+}
