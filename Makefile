@@ -22,12 +22,12 @@ RAYLIB_RELEASE_PATH    ?=$(RAYLIB_PATH)/src
 EXAMPLE_RUNTIME_PATH   ?=$(RAYLIB_RELEASE_PATH)
 
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
-	ifeq ($(OS),Windows_NT)
-		PLATFORM_OS=WINDOWS
-		export PATH := $(COMPILER_PATH):$(PATH)
+    ifeq ($(OS),Windows_NT)
+        PLATFORM_OS=WINDOWS
+        export PATH := $(COMPILER_PATH):$(PATH)
 
-		CC             =gcc
-		MAKE           =make
+        CC             =gcc
+        MAKE           =make
 
         # Define compiler flags:
         #  -O0                  defines optimization level (no optimization, better for debugging)
@@ -39,26 +39,26 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
         #  -std=gnu99           defines C language mode (GNU C from 1999 revision)
         #  -Wno-missing-braces  ignore invalid warning (GCC bug 53119)
         #  -D_DEFAULT_SOURCE    use with -std=c99 on Linux and PLATFORM_WEB, required for timespec
-		CFLAGS        +=-Wall -std=c99 -D_DEFAULT_SOURCE -Wno-missing-braces $(EXTRA)
+        CFLAGS        +=-Wall -std=c99 -D_DEFAULT_SOURCE -Wno-missing-braces $(EXTRA)
 
-		LDFLAGS        =-L. -L$(RAYLIB_RELEASE_PATH) -L$(RAYLIB_PATH)/src
-		LDFLAGS       +=$(RAYLIB_PATH)/src/raylib.rc.data
+        LDFLAGS        =-L. -L$(RAYLIB_RELEASE_PATH) -L$(RAYLIB_PATH)/src
+        LDFLAGS       +=$(RAYLIB_PATH)/src/raylib.rc.data
 
-		ifeq ($(BUILD_MODE),RELEASE)
-			# -Wl,--subsystem,windows hides the console window
-			LDFLAGS   +=-Wl,--subsystem,windows
-		endif
+        ifeq ($(BUILD_MODE),RELEASE)
+            # -Wl,--subsystem,windows hides the console window
+            LDFLAGS   +=-Wl,--subsystem,windows
+        endif
 
-		ifeq ($(BUILD_MODE),DEBUG)
-			CFLAGS    += -g -O0
-		else
-			CFLAGS    += -s -O1
-		endif
+        ifeq ($(BUILD_MODE),DEBUG)
+            CFLAGS    += -g -O0
+        else
+            CFLAGS    += -s -O1
+        endif
 
-		LDLIBS = -lraylib -lopengl32 -lgdi32 -lwinmm
+        LDLIBS = -lraylib -lopengl32 -lgdi32 -lwinmm
 
-		INCLUDE_PATHS  = -I./src -I$(RAYLIB_PATH)/src -I$(RAYLIB_PATH)/src/external
-	endif
+        INCLUDE_PATHS  = -I./src -I$(RAYLIB_PATH)/src -I$(RAYLIB_PATH)/src/external
+    endif
 endif
 
 SRC_DIR = src src/app
@@ -68,28 +68,28 @@ SRC = $(wildcard *.c $(foreach fd, $(SRC_DIR), $(fd)/*.c))
 OBJS = $(subst src/, $(OBJ_DIR)/,$(SRC:c=o))
 
 ifeq ($(PLATFORM),PLATFORM_ANDROID)
-	MAKEFILE_PARAMS =-f Makefile.Android
-	export PROJECT_NAME
-	export SRC_DIR
+    MAKEFILE_PARAMS =-f Makefile.Android
+    export PROJECT_NAME
+    export SRC_DIR
 else
-	MAKEFILE_PARAMS =$(PROJECT_NAME)
+    MAKEFILE_PARAMS =$(PROJECT_NAME)
 endif
 
 all:
-	$(MAKE) $(MAKEFILE_PARAMS)
+    $(MAKE) $(MAKEFILE_PARAMS)
 
 $(PROJECT_NAME): $(OBJS)
-	$(CC) -o bin/$(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(BUILD_MODE) -D$(PLATFORM) 
+    $(CC) -o bin/$(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(BUILD_MODE) -D$(PLATFORM) 
 
 #	SRC/APP
 $(OBJ_DIR)/app/app.o: src/app/app.c src/app/app.h src/defines.h
-	mkdir -p $(@D)
-	$(CC) -o $@ $(CFLAGS) -c $< $(INCLUDE_PATHS) -D$(BUILD_MODE) -D$(PLATFORM)
+    mkdir -p $(@D)
+    $(CC) -o $@ $(CFLAGS) -c $< $(INCLUDE_PATHS) -D$(BUILD_MODE) -D$(PLATFORM)
 
 $(OBJ_DIR)/main.o: src/main.c src/defines.h src/app/app.h
-	mkdir -p $(@D)
-	$(CC) -o $@ $(CFLAGS) -c $< $(INCLUDE_PATHS) -D$(BUILD_MODE) -D$(PLATFORM)
+    mkdir -p $(@D)
+    $(CC) -o $@ $(CFLAGS) -c $< $(INCLUDE_PATHS) -D$(BUILD_MODE) -D$(PLATFORM)
 
 clean:
-	$(RM) -r bin/$(PROJECT_NAME)$(EXT) $(OBJS) bin/
-	@echo Cleaning done
+    $(RM) -r bin/$(PROJECT_NAME)$(EXT) $(OBJS) bin/
+    @echo Cleaning done
